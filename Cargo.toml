@@ -1,0 +1,10 @@
+[package]
+
+name = "book_teacher"
+version = "0.0.1"
+authors = [ "hiromaily <hiromaily2@gmail.com>" ]
+
+[dependencies]
+hyper = { git = "https://github.com/hyperium/hyper.git" }
+tokio-core = "0.1.6"
+futures = "0.1.14"

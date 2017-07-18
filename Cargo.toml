@@ -8,3 +8,5 @@ authors = [ "hiromaily <hiromaily2@gmail.com>" ]
 hyper = { git = "https://github.com/hyperium/hyper.git" }
 tokio-core = "0.1.6"
 futures = "0.1.14"
+#html5ever = "*"
+#select = "*"

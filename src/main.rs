@@ -25,20 +25,15 @@ fn main() {
     println!("[rust-book-teacher]");
 
     let ts = teachers_data();
-    //for t in ts {
     for t in ts.iter() {
         println!("{}:{}:[{}]", t.id, t.name, t.country);
-        call_http(t);
+        get_http(t);
+        //scraping(t);
     }
-
-    //number_test(20);
-
-    //call_http("http://eikaiwa.dmm.com/teacher/index/20262/".to_string());
 
 }
 
 fn teachers_data() -> [TeacherInfo; 5] {
-    //static TEACHERS: TeacherInfo = TeacherInfo{ id: 20262, name: "Mia Ca", country: "Serbia"};
     //let t: [TeacherInfo; 5] = [
     [
         TeacherInfo{ id: 20262, name: "Mia Ca", country: "Serbia"},
@@ -49,19 +44,8 @@ fn teachers_data() -> [TeacherInfo; 5] {
     ]
 }
 
-//number_test is just test
-/*
-fn number_test(z: i32) {
-    let x = 5;
-    let y = 10;
-
-    println!("x: {}, y:{}, z{}", x, y, z);
-}
-*/
-
-//call_http
-//fn call_http(url: String) {
-fn call_http(t: &TeacherInfo) {
+//get_http
+fn get_http(t: &TeacherInfo) {
     let raw_url: String = format!("{}{}{}", BASE_URL, t.id, "/");
     let url = raw_url.parse::<hyper::Uri>().unwrap();
     if url.scheme() != Some("http") {
@@ -77,9 +61,8 @@ fn call_http(t: &TeacherInfo) {
     let work = client
         .get(url)
         .and_then(|res| {
-            println!("Response: {}", res.status());
-            println!("Headers: \n{}", res.headers());
-
+            //println!("Response: {}", res.status());
+            //println!("Headers: \n{}", res.headers());
             res.body().for_each(|chunk| {
                 io::stdout().write_all(&chunk).map_err(From::from)
             })
@@ -91,3 +74,7 @@ fn call_http(t: &TeacherInfo) {
     core.run(work).unwrap();
     //*/
 }
+
+//scraping
+//fn scraping(t: &TeacherInfo) -> String{
+//}
